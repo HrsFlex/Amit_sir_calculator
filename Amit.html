@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Numeric Value Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .info {
+            margin-top: 25px;
+            text-align: left;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .info li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Word Numeric Value Calculator</h1>
+        <div class="input-group">
+            <label for="wordInput">Enter a word:</label>
+            <input type="text" id="wordInput" placeholder="Type your word here">
+        </div>
+        <button onclick="calculateWordValue()">Calculate Value</button>
+        <div class="result">
+            Total Numeric Value: <span id="totalValue">0</span>
+        </div>
+        <div class="info">
+            <h2>Alphabet Numerical Assignment:</h2>
+            <ul>
+                <li>A, I, J, Q, Y = 1</li>
+                <li>B, K, R = 2</li>
+                <li>C, G, L, S = 3</li>
+                <li>D, M, T = 4</li>
+                <li>H, N, E, X = 5</li>
+                <li>U, V, W = 6</li>
+                <li>O, Z = 7</li>
+                <li>F, P = 8</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Define the updated mapping of alphabets to numerical values
+        const alphabetValues = {
+            'A': 1, 'I': 1, 'J': 1, 'Q': 1, 'Y': 1,
+            'B': 2, 'K': 2, 'R': 2,
+            'C': 3, 'G': 3, 'L': 3, 'S': 3,
+            'D': 4, 'M': 4, 'T': 4,
+            'H': 5, 'N': 5, 'E': 5, 'X': 5,
+            'U': 6, 'V': 6, 'W': 6,
+            'O': 7, 'Z': 7,
+            'F': 8, 'P': 8
+        };
+
+        function calculateWordValue() {
+            const wordInput = document.getElementById('wordInput').value;
+            const totalValueSpan = document.getElementById('totalValue');
+            let sum = 0;
+
+            // Convert the word to uppercase to match the keys in alphabetValues
+            const word = wordInput.toUpperCase();
+
+            // Iterate through each character of the word
+            for (let i = 0; i < word.length; i++) {
+                const char = word[i];
+                // Check if the character is an alphabet and has a value assigned
+                if (alphabetValues.hasOwnProperty(char)) {
+                    sum += alphabetValues[char];
+                }
+                // Non-alphabetic characters or those without assigned values will be ignored.
+            }
+
+            // Display the total sum
+            totalValueSpan.textContent = sum;
+        }
+    </script>
+</body>
+</html>
+
+:
+
